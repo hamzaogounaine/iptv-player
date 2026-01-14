@@ -9,9 +9,9 @@ export function IptvProvider ({children}) {
     const [categories , setCategories] = useState()
     const [channels , setChannels] = useState()
     const [userInfo , setUserInfo] = useState({
-        host : 'http://freeiptv.ottc.xyz:80',
-        user : '144229934234',
-        password : '238455936418'
+        host : process.env.NEXT_PUBLIC_IPTV_HOST,
+        user : process.env.NEXT_PUBLIC_IPTV_USERNAME,
+        password : process.env.NEXT_PUBLIC_IPTV_PASSWORD
     })
     const [loading , setLoading] = useState(false)
     const [streamUrl , setStreamUrl] = useState()

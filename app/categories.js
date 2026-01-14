@@ -1,11 +1,15 @@
 "use client";
 import { useIptv } from "@/hooks/iptvContext";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Categories = () => {
   const { fetchCategories, categories, loading } = useIptv();
-  fetchCategories();
+
+   useEffect(() => {
+     
+     fetchCategories();
+    }, []);
 
   if (!categories && loading) {
     return (
