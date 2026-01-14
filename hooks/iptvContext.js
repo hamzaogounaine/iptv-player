@@ -17,7 +17,8 @@ export function IptvProvider ({children}) {
     const [streamUrl , setStreamUrl] = useState()
 
     const formatStramUrl = (chanId) => {
-        setStreamUrl(`${userInfo.host}/live/${userInfo.user}/${userInfo.password}/${chanId}.m3u8`)
+        // setStreamUrl(`${userInfo.host}/live/${userInfo.user}/${userInfo.password}/${chanId}.m3u8`)
+        setStreamUrl(`/api/stream?id=${chanId}`)
     }
 
     
@@ -27,16 +28,18 @@ export function IptvProvider ({children}) {
         try {
             setLoading(true);
       
-            const params = {
-              username: userInfo.user,
-              password: userInfo.password,
-              action: "get_live_categories",
-            };
+            // const params = {
+            //   username: userInfo.user,
+            //   password: userInfo.password,
+            //   action: "get_live_categories",
+            // };
       
-            const res = await axios.get(
-              `${userInfo.host}/player_api.php`,
-              { params }
-            );
+            // const res = await axios.get(
+            //   `${userInfo.host}/player_api.php`,
+            //   { params }
+            // );
+
+            const res = await axios.get('/api/data/categories')
       
             setCategories(res.data);
             return res.data;
