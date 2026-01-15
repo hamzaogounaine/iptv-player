@@ -17,7 +17,7 @@ export function IptvProvider ({children}) {
     const [streamUrl , setStreamUrl] = useState()
 
     const formatStramUrl = (chanId) => {
-        setStreamUrl(`${userInfo.host}:443/live/${userInfo.user}/${userInfo.password}/${chanId}.m3u8`)
+        setStreamUrl(`${userInfo.host}/live/${userInfo.user}/${userInfo.password}/${chanId}.m3u8`)
         // setStreamUrl(`/api/stream?id=${chanId}`)
     }
 
