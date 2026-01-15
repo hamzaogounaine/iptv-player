@@ -54,18 +54,20 @@ export function IptvProvider ({children}) {
         try {
             setLoading(true);
       
-            const params = {
-              username: userInfo.user,
-              password: userInfo.password,
-              action: "get_live_streams",
-              category_id : catId
-            };
+            // const params = {
+            //   username: userInfo.user,
+            //   password: userInfo.password,
+            //   action: "get_live_streams",
+            //   category_id : catId
+            // };
       
-            const res = await axios.get(
-              `${userInfo.host}/player_api.php`,
-              { params }
-            );
+            // const res = await axios.get(
+            //   `${userInfo.host}/player_api.php`,
+            //   { params }
+            // );
       
+            const res = await axios.get(`/api/data/channels?id=${catId}`)
+
             setChannels(res.data);
             return res.data;
           } catch (error) {
