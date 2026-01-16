@@ -14,7 +14,6 @@ export async function GET(req) {
     // If requesting a segment, proxy it directly
     if (segment) {
         const segmentUrl = `${host}${segment}`;
-        console.log("Fetching segment:", segmentUrl);
         
         try {
             const response = await fetch(segmentUrl, {
@@ -24,7 +23,6 @@ export async function GET(req) {
             });
   
             if (!response.ok) {
-                console.error("Segment not found:", response.status);
                 return new Response("Segment not found", { status: response.status });
             }
   
@@ -43,7 +41,6 @@ export async function GET(req) {
   
     // Fetch and modify the m3u8 playlist
     const streamUrl = `${host}/live/${username}/${password}/${id}.m3u8`;
-    console.log("Fetching playlist:", streamUrl);
   
     try {
         const response = await fetch(streamUrl, {
@@ -53,7 +50,6 @@ export async function GET(req) {
         });
   
         if (!response.ok) {
-            console.error("Stream not found:", response.status);
             return new Response("Stream not found", { status: response.status });
         }
         
@@ -69,8 +65,7 @@ export async function GET(req) {
                 return line;
             }
             
-            // This is a segment path - proxy it
-            // The segments look like: /1768515537/40fa10113578aa60e7dfaf29310e329e/t1/xyz-xxx/play
+            // Proxy the segment through our HTTPS endpoint
             return `/api/stream?id=${id}&segment=${encodeURIComponent(trimmed)}`;
         });
         
